@@ -24,10 +24,7 @@ public class GuessTheWord {
             }
             if (!answer.equals(secretWord)) {
                 System.out.println("The word is wrong(((");
-                for (int i = 0; i < secretWord.length(); i++) {
-                    if (i > answer.length() - 1) {
-                        continue;
-                    }
+                for (int i = 0; i < secretWord.length() && i < answer.length(); i++) {
                     if (answer.charAt(i) == secretWord.charAt(i)) {
                         hiddenString[i] = answer.charAt(i);
                     }

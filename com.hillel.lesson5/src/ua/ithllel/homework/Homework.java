@@ -17,22 +17,12 @@ public class Homework {
     }
 
     public String stringReverse(String str) {
-        char[] array = str.toCharArray();
-        for (int i = 0, y = array.length - 1; i < array.length / 2; i++, y--) {
-            char temp = 0;
-            temp = array[i];
-            array[i] = array[y];
-            array[y] = temp;
-        }
-        return new String(array);
+        StringBuilder strReverse = new StringBuilder(str);
+        return strReverse.reverse().toString();
     }
 
     public  boolean isPalindrome(String str) {
-        for (int i = 0, y = str.length() - 1; i < str.length() / 2; i++, y--) {
-            if (str.charAt(i) != str.charAt(y)) {
-                return false;
-            }
-        }
-        return true;
+        StringBuilder stringBuilder = new StringBuilder(str);
+        return str.equals(stringBuilder.reverse().toString());
     }
 }
