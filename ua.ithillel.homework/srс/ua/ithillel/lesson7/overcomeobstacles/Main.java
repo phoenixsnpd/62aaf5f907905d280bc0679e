@@ -8,14 +8,11 @@ public class Main {
 
     }
     public static void competition(Participant[] participants, Obstacle[] obstacles) {
-        for (int i = 0; i < obstacles.length; i++) {
-            for (int j = 0; j < participants.length; j++) {
-                if (participants[j] == null) {
-                    continue;
-                }
-                if (obstacles[i].overcome(participants[j]) == false) {
-                    System.out.println("participant number " + (j + 1) + " dropped out");
-                    participants[j] = null;
+        for (int i = 0; i < participants.length; i++) {
+            for (int j = 0; j < obstacles.length; j++) {
+                if (obstacles[j].overcome(participants[i]) == false) {
+                    System.out.println("participant number " + (i + 1) + " dropped out");
+                    break;
                 }
             }
         }

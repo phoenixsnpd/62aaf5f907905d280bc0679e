@@ -7,11 +7,11 @@ public class Main {
 
     }
 
-    public static int allFigureArea(CalculateFigureArea[] figures) {
+    public static double allFigureArea(CalculateFigureArea[] figures) {
         double result = 0;
         for (int i = 0; i < figures.length; i++) {
             result += figures[i].calculate();
         }
-        return (int) result;
+        return result;
     }
 }

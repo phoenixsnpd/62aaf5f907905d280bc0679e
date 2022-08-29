@@ -1,8 +1,8 @@
 package ua.ithillel.lesson7.overcomeobstacles;
 
-public class Robot extends Participant {
-    private int runEndurance = 5000;
-    private  int jumpEndurance = 5;
+public class Robot implements Participant {
+    static final int RUN_ENDURANCE = 5000;
+    static final int JUMP_ENDURANCE = 5;
 
     @Override
     public void run() {
@@ -13,11 +13,12 @@ public class Robot extends Participant {
         System.out.print("The robot jumped ");
     }
 
+    @Override
     public int getRunEndurance() {
-        return runEndurance;
+        return RUN_ENDURANCE;
     }
-
+    @Override
     public int getJumpEndurance() {
-        return jumpEndurance;
+        return JUMP_ENDURANCE;
     }
 }
