@@ -1,15 +1,16 @@
 package ua.ithillel.lesson9;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
+
 
 public class FileNavigator {
     private HashMap<String, List<FileData>> pathToFiles = new HashMap();
 
     public void add(String path, FileData fileData) {
+        if (!path.equals(fileData.getPathToFile())) {
+            System.out.println("This path is wrong for file " + fileData.getName() + ". correct path is " + fileData.getPathToFile());
+        }
         if (!pathToFiles.containsKey(path)) {
             List<FileData> newList = new ArrayList<>();
             newList.add(fileData);
@@ -20,33 +21,29 @@ public class FileNavigator {
     }
 
     public List find(String path) {
-        if (pathToFiles.containsKey(path)) {
-            return pathToFiles.get(path);
+        if (!pathToFiles.containsKey(path)) {
+            System.out.println("This path is not exist");
+            return null;
         }
-        return null;      // perhaps need to change
+        return pathToFiles.get(path);
     }
 
     public List<FileData> filterBySize(int size) {
-        List<FileData> list = new ArrayList<>();
-        List<FileData> listToReturn = new ArrayList<>();
-        for (Map.Entry entry : pathToFiles.entrySet()) {
-            list = (List) entry.getValue();
-            /*list.stream()
-                    .filter(x -> x.getSize() <= size)
-                    .collect(Collectors.toList());
-        }
-        return list;*/
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getSize() <= size) {
-                    listToReturn.add(list.get(i));
-                }
-            }
-
-        }
-        return listToReturn;
+        return pathToFiles.values().stream()
+                .flatMap(List :: stream)
+                .filter(x -> x.getSizeInBytes() <= size)
+                .collect(Collectors.toList());
     }
 
     public void remove(String path) {
         pathToFiles.remove(path);
     }
+
+    public List<FileData> sortBySize() {
+        return pathToFiles.values().stream()
+                .flatMap(List :: stream)
+                .sorted(Comparator.comparingInt(FileData :: getSizeInBytes))
+                .collect(Collectors.toList());
+    }
+
 }

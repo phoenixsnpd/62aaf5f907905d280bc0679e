@@ -2,12 +2,12 @@ package ua.ithillel.lesson9;
 
 public class FileData {
     private String name;
-    private int size;
+    private int sizeInBytes;
     private String pathToFile;
 
     public FileData(String name, int size, String pathToFile) {
         this.name = name;
-        this.size = size;
+        this.sizeInBytes = size;
         this.pathToFile = pathToFile;
     }
 
@@ -15,8 +15,8 @@ public class FileData {
         return name;
     }
 
-    public int getSize() {
-        return size;
+    public int getSizeInBytes() {
+        return sizeInBytes;
     }
 
     public String getPathToFile() {
@@ -27,7 +27,7 @@ public class FileData {
     public String toString() {
         return "FileData{" +
                 "name='" + name + '\'' +
-                ", size=" + size +
+                ", size=" + sizeInBytes +
                 ", pathToFile='" + pathToFile + '\'' +
                 '}';
     }
