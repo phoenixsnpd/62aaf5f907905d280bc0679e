@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 
 public class FileNavigator {
-    private HashMap<String, List<FileData>> pathToFiles = new HashMap();
+    private Map<String, List<FileData>> pathToFiles = new HashMap();
 
     public void add(String path, FileData fileData) {
         if (!path.equals(fileData.getPathToFile())) {
