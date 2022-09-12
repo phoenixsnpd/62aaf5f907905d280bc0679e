@@ -6,9 +6,7 @@ public class TestApplication {
         ArrayValueCalculator arrayValueCalculator = new ArrayValueCalculator();
         try {
             arrayValueCalculator.doCalc(array);
-        } catch (ArraySizeException e) {
-            e.printStackTrace();
-        } catch (ArrayDataException e) {
+        } catch (ArraySizeException | ArrayDataException e) {
             e.printStackTrace();
         }
     }
