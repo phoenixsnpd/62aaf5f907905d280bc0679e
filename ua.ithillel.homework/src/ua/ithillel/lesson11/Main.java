@@ -37,7 +37,7 @@ public class Main {
         System.out.println(boxWithApple.getFruits().size());
     }
 
-    public static <T> List toList(T[] array) {
+    public static <T> List<T> toList(T[] array) {
         List<T> newList = new ArrayList<>();
         Collections.addAll(newList, array);
         return newList;
