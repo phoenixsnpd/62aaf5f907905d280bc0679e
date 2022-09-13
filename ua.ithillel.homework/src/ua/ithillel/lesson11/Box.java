@@ -3,7 +3,7 @@ package ua.ithillel.lesson11;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Box<T> {
+public class Box<T extends Fruit> {
     private List<T> fruits = new ArrayList<>();
 
     public void addOneFruit(T fruit) {
@@ -15,14 +15,11 @@ public class Box<T> {
     }
 
     public float getWeight() {
-        Fruit newFruit = (Fruit) fruits.get(0);
-        return newFruit.getWeight() * fruits.size();
+        return fruits.get(0).getWeight() * fruits.size();
     }
 
-    public boolean compare (Box box) {
-        if (getWeight() == box.getWeight()) {
-            return true;
-        } return false;
+    public boolean compare (Box<? extends Fruit> box) {
+        return getWeight() == box.getWeight();
     }
 
     public void merge(Box<T> box) {
