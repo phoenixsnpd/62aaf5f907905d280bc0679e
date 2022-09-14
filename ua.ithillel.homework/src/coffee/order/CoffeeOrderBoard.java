@@ -1,12 +1,12 @@
 package coffee.order;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 
 public class CoffeeOrderBoard {
 
-    private List<Order> orders = new ArrayList<>();
+    private Queue<Order> orders = new ArrayDeque<>();
     private int orderNumber = 0;
 
     public void add(String name) {
@@ -14,12 +14,20 @@ public class CoffeeOrderBoard {
         orders.add(new Order(name, orderNumber));
     }
 
-    public void deliver() {
-        orders.remove(orders.get(0));
+    public Order deliver() {
+        return orders.remove();
     }
 
-    public void diliverByNumber(int number) {
-        orders.removeIf(order -> order.getIdOrder() == number);
+    public Order deliver(int number) {
+        Order deliverOrder;
+        for (Order order : orders) {
+            if (order.getIdOrder() == number) {
+                deliverOrder = order;
+                orders.remove(order);
+                return deliverOrder;
+            }
+        }
+        return deliverOrder = new Order("Empty deliver", 0);
     }
 
     public void draw() {
@@ -30,7 +38,7 @@ public class CoffeeOrderBoard {
         }
     }
 
-    public List<Order> getOrders() {
+    public Queue<Order> getOrders() {
         return orders;
     }
 }

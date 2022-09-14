@@ -9,8 +9,9 @@ public class TestCofeeOrderBoard {
         coffeeOrderBoard.add("John Snow");
         coffeeOrderBoard.add("Donald Duck");
 
-        coffeeOrderBoard.deliver();
-        coffeeOrderBoard.diliverByNumber(5);
+        System.out.println(coffeeOrderBoard.deliver());
+        System.out.println(coffeeOrderBoard.deliver(5));
+
 
         coffeeOrderBoard.add("Dunkan McLeod");
 
