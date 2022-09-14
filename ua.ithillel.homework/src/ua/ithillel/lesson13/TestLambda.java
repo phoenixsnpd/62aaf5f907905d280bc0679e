@@ -26,7 +26,7 @@ public class TestLambda {
 
         // Testing Consumer
 
-        CargoBox cargoBox = new CargoBox(10);
+        CargoBox cargoBox = new CargoBox(1000);
         Consumer<CargoBox>getCargoBox = box -> System.out.println("Отгрузили ящик с весом " + box.getWeight() + " kg.");
         Consumer<CargoBox> sendCargoBox = box -> System.out.println("Отправляем ящик с весом " + box.getWeight() + " kg.");
         getCargoBox.andThen(sendCargoBox).accept(cargoBox);
