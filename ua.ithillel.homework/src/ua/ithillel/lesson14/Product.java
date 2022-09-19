@@ -3,22 +3,25 @@ package ua.ithillel.lesson14;
 import java.time.LocalDate;
 
 public class Product {
+    private long id;
     private String type;
     private double price;
     private LocalDate createDate;
     private boolean discount;
 
-    public Product(String type, int price, LocalDate createDate) {
-        this.type = type;
-        this.price = price;
-        this.createDate = createDate;
-    }
-
-    public Product(String type, int price, LocalDate createDate, boolean discount) {
+    public Product(long ID, String type, double price, LocalDate createDate, boolean discount) {
+        this.id = ID;
         this.type = type;
         this.price = price;
         this.createDate = createDate;
         this.discount = discount;
+    }
+
+    public Product(long ID, String type, double price, LocalDate createDate) {
+        this.id = ID;
+        this.type = type;
+        this.price = price;
+        this.createDate = createDate;
     }
 
     public void applyDiscount(double PercentDiscount) {
@@ -42,6 +45,10 @@ public class Product {
 
     public LocalDate getCreateDate() {
         return createDate;
+    }
+
+    public long getId() {
+        return id;
     }
 
     @Override

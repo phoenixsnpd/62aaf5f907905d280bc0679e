@@ -8,14 +8,15 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) {
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Toy",20, LocalDate.of(2021, Month.DECEMBER, 11)));
-        products.add(new Product("Toy",100, LocalDate.of(2022, Month.JULY, 12)));
-        products.add(new Product("Book",260, LocalDate.of(2022, Month.SEPTEMBER, 13), true));
-        products.add(new Product("Book",60, LocalDate.of(2022, Month.SEPTEMBER, 14)));
-        products.add(new Product("Stationery",15, LocalDate.of(2022, Month.SEPTEMBER, 15)));
-        products.add(new Product("Stationery",5, LocalDate.of(2022, Month.SEPTEMBER, 17)));
-        products.add(new Product("Book", 40, LocalDate.of(2022, Month.SEPTEMBER, 18)));
-        products.add(new Product("Book", 70, LocalDate.of(2022, Month.SEPTEMBER, 19)));
+        products.add(new Product(1111L,"Toy",20, LocalDate.of(2021, Month.DECEMBER, 11)));
+        products.add(new Product(1112L,"Toy",100, LocalDate.of(2022, Month.JULY, 12)));
+        products.add(new Product(3111L,"Stationery",15, LocalDate.of(2022, Month.AUGUST, 1)));
+        products.add(new Product(3112L,"Stationery",5, LocalDate.of(2022, Month.SEPTEMBER, 11)));
+        products.add(new Product(2111L,"Book",260, LocalDate.of(2022, Month.SEPTEMBER, 12), true));
+        products.add(new Product(2112L,"Book",60, LocalDate.of(2022, Month.SEPTEMBER, 13)));
+        products.add(new Product(2113L,"Book", 40, LocalDate.of(2022, Month.SEPTEMBER, 14)));
+        products.add(new Product(2114L,"Book", 70, LocalDate.of(2022, Month.SEPTEMBER, 15)));
+
 
         List<Product> emptyList = new ArrayList<>();
 
