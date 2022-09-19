@@ -67,12 +67,11 @@ public class Main {
                 .min(Comparator.comparingDouble(Product::getPrice));
         if (book.isEmpty())
             throw new ProductNotFoundException("Product with type \"" + productType + "\"  not found");
-
         return book.get();
     }
 
     public static List<Product> threeLastProduct(List<Product> products) {
-       return products.stream()
+        return products.stream()
                 .skip(products.size() - 3)
                 .toList();
     }
