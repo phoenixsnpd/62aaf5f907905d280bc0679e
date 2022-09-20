@@ -17,27 +17,14 @@ public class Main {
         products.add(new Product(2113L,"Book", 40, LocalDate.of(2022, Month.SEPTEMBER, 14)));
         products.add(new Product(2114L,"Book", 70, LocalDate.of(2022, Month.SEPTEMBER, 15)));
 
-
-        List<Product> emptyList = new ArrayList<>();
-
         System.out.println(filterByPrice(products));
         System.out.println();
 
         System.out.println(booksWithDiscount(products, 10));
         System.out.println();
 
-        try {
-            System.out.println(minimalPriceBook(products, "Book"));
-        } catch (ProductNotFoundException ex) {
-            ex.printStackTrace();
-        }
+        System.out.println(minimalPriceBook(products, "Book"));
         System.out.println();
-
-        try {
-            System.out.println(minimalPriceBook(emptyList, "Book"));
-        } catch (ProductNotFoundException ex) {
-            ex.printStackTrace();
-        }
 
         System.out.println(threeLastProduct(products));
         System.out.println();
@@ -61,13 +48,11 @@ public class Main {
                 .toList();
     }
 
-    public static Product minimalPriceBook(List<Product> products, String productType) throws ProductNotFoundException {
-        Optional<Product> book = products.stream()
+    public static Product minimalPriceBook(List<Product> products, String productType) {
+        return products.stream()
                 .filter(product -> product.getType().equals(productType))
-                .min(Comparator.comparingDouble(Product::getPrice));
-        if (book.isEmpty())
-            throw new ProductNotFoundException("Product with type \"" + productType + "\"  not found");
-        return book.get();
+                .min(Comparator.comparingDouble(Product::getPrice))
+                .orElseThrow(() -> new ProductNotFoundException("Product with type \"" + productType + "\" not found"));
     }
 
     public static List<Product> threeLastProduct(List<Product> products) {
