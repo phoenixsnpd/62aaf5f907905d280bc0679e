@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         ClassTests classTestOne = new ClassTests();
-        Class<? extends ClassTests> test = classTestOne.getClass();
+        Class<ClassTests> test = (Class<ClassTests>) classTestOne.getClass();
         TestRunner.start(test);
     }
 }

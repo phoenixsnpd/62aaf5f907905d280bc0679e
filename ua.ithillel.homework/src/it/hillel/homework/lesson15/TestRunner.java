@@ -7,12 +7,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TestRunner {
-    public static void start(Class<? extends ClassTests> testClass) {
+    public static void start(Class<ClassTests> testClass) {
         checkingAfterAndBeforeSuit(testClass);
         callMethods(testClass);
     }
 
-    private static void checkingAfterAndBeforeSuit(Class<? extends ClassTests> testClass) {
+    private static void checkingAfterAndBeforeSuit(Class<ClassTests> testClass) {
         int beforeSuitecount = 0;
         int afterSuitecount = 0;
 
@@ -30,7 +30,7 @@ public class TestRunner {
         }
     }
 
-    private static void callMethods(Class<? extends ClassTests> testClass) {
+    private static void callMethods(Class<ClassTests> testClass) {
         Object testObject = null;
         try {
             testObject = testClass.getDeclaredConstructor().newInstance();
