@@ -1,18 +1,17 @@
 package it.hillel.homework.lesson15;
 
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class TestRunner {
-    public static void start(Class<ClassTests> testClass) {
+    public static <T> void start(Class<T> testClass) {
         checkingAfterAndBeforeSuit(testClass);
         callMethods(testClass);
     }
 
-    private static void checkingAfterAndBeforeSuit(Class<ClassTests> testClass) {
+    private static <T> void checkingAfterAndBeforeSuit(Class<T> testClass) {
         int beforeSuitecount = 0;
         int afterSuitecount = 0;
 
@@ -26,11 +25,11 @@ public class TestRunner {
             }
         }
         if (beforeSuitecount > 1 || afterSuitecount > 1) {
-            throw new RuntimeException();
+            throw new RuntimeException("Number of methods beforeSuite or afterSuite is greater than 1");
         }
     }
 
-    private static void callMethods(Class<ClassTests> testClass) {
+    private static <T> void callMethods(Class<T> testClass) {
         Object testObject = null;
         try {
             testObject = testClass.getDeclaredConstructor().newInstance();
