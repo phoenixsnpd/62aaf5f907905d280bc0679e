@@ -10,8 +10,8 @@ public class Main {
                 LoggingLevel.DEBUG, 1000);
 
         FileLogger fileLogger = new FileLogger(fileLogConf);
-        fileLogger.debug("Writing to file");
-        fileLogger.info("New writing to file");
+        fileLogger.debug("Writing to the file");
+        fileLogger.info("New writing to the file");
 
         FileLoggerConfigurationLoader fileLogConfLoader = new FileLoggerConfigurationLoader();
         System.out.println(fileLogConfLoader.load(fileWithConfig));
