@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-public class FileLogger {
+public class FileLogger implements Logger {
     private LocalDateTime createTime;
     private FileLoggerConfiguration fileLogConfig;
 
@@ -16,6 +16,7 @@ public class FileLogger {
         this.fileLogConfig = fileLoggerConfiguration;
     }
 
+    @Override
     public void debug(String message) {
         if (fileLogConfig.getFile().length() > fileLogConfig.getFileMaxSize()) {
             try {
@@ -43,6 +44,7 @@ public class FileLogger {
         }
     }
 
+    @Override
     public void info(String message) {
         if (fileLogConfig.getLoggingLevel().equals(LoggingLevel.DEBUG)) {
             return;

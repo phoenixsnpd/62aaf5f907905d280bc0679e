@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FileLoggerConfigurationLoader {
+public class FileLoggerConfigurationLoader implements LoggerLoader<FileLoggerConfiguration, File> {
     private File filePath;
     private String loglvlStr;
     private long maxSize;
     private String format;
 
+    @Override
     public FileLoggerConfiguration load(File file) {
         List<String> lines = new ArrayList<>();
         String[] splitStrings;
