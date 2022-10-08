@@ -1,0 +1,19 @@
+package ua.ithillel.homework.lesson17;
+
+import java.io.File;
+
+public class Main {
+    public static void main(String[] args) {
+        File fileForLogs = new File("Test.txt");
+        File fileWithConfig = new File("ConfigFile.txt");
+        FileLoggerConfiguration fileLogConf = new FileLoggerConfiguration(fileForLogs,
+                LoggingLevel.DEBUG, 1000);
+
+        FileLogger fileLogger = new FileLogger(fileLogConf);
+        fileLogger.debug("Writing to file");
+        fileLogger.info("New writing to file");
+
+        FileLoggerConfigurationLoader fileLogConfLoader = new FileLoggerConfigurationLoader();
+        System.out.println(fileLogConfLoader.load(fileWithConfig));
+    }
+}
