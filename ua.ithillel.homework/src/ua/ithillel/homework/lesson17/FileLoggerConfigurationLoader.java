@@ -17,8 +17,7 @@ public class FileLoggerConfigurationLoader {
 
         try (BufferedReader bw = new BufferedReader(new FileReader(file))) {
             String line;
-            while (bw.readLine() != null) {
-                line = bw.readLine();
+            while ((line = bw.readLine()) != null) {
                 lines.add(line);
             }
         } catch (IOException e) {
