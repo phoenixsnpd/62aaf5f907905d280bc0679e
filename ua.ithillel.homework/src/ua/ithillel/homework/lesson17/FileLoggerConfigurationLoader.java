@@ -1,44 +1,38 @@
 package ua.ithillel.homework.lesson17;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class FileLoggerConfigurationLoader {
-    private File filePath;
-    private String loglvlStr;
-    private long maxSize;
-    private String format;
+    private final String FILE_PATH = "FILE";
+    private final String LOGGING_LEVEL = "LEVEL";
+    private final String MAX_SIZE = "MAX-SIZE";
+    private final String FORMAT = "FORMAT";
+    private LoggingLevel loglvl;
 
     public FileLoggerConfiguration load(File file) {
-        List<String> lines = new ArrayList<>();
+        Map<String, String> LogConfiguration = new HashMap<>();
         String[] splitStrings;
 
         try (BufferedReader bw = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = bw.readLine()) != null) {
-                lines.add(line);
+                splitStrings = line.split(": ");
+                LogConfiguration.put(splitStrings[0], splitStrings[1]);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < lines.size(); i++) {
-            splitStrings = lines.get(i).split(": ");
-            if (i == 0) {
-                filePath = new File(splitStrings[1]);
-            } else if (i == 1) {
-                loglvlStr = splitStrings[1];
-            } else if (i == 2) {
-                maxSize = Long.parseLong(splitStrings[1]);
-            } else if (i == 3) {
-                format = splitStrings[1];
-            }
+        if (LogConfiguration.get(LOGGING_LEVEL).equals("INFO")) {
+            loglvl = LoggingLevel.INFO;
+        } else if (LogConfiguration.get(LOGGING_LEVEL).equals("DEBUG")) {
+            loglvl = LoggingLevel.DEBUG;
         }
-        if (loglvlStr.equals("INFO")) {
-            return new FileLoggerConfiguration(filePath, LoggingLevel.INFO, maxSize, format);
-        }
-        return new FileLoggerConfiguration(filePath, LoggingLevel.DEBUG, maxSize, format);
+
+        return new FileLoggerConfiguration(new File(LogConfiguration.get(FILE_PATH)),
+                loglvl, Long.parseLong(LogConfiguration.get(MAX_SIZE)), LogConfiguration.get(FORMAT));
     }
 }
