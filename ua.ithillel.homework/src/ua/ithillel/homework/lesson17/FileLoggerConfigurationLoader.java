@@ -1,6 +1,9 @@
 package ua.ithillel.homework.lesson17;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +21,7 @@ public class FileLoggerConfigurationLoader implements LoggerLoader<FileLoggerCon
 
         try (BufferedReader bw = new BufferedReader(new FileReader(file))) {
             String line;
-            while (bw.readLine() != null) {
-                line = bw.readLine();
+            while ((line = bw.readLine()) != null) {
                 lines.add(line);
             }
         } catch (IOException e) {
