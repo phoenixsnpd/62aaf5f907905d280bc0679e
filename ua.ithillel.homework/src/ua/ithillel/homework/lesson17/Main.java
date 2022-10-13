@@ -7,7 +7,7 @@ public class Main {
         File fileForLogs = new File("Test.txt");
         File fileWithConfig = new File("ConfigFile.txt");
         FileLoggerConfiguration fileLogConf = new FileLoggerConfiguration(fileForLogs,
-                LoggingLevel.DEBUG, 1000);
+                LoggingLevel.DEBUG, 100);
 
         Logger fileLogger = new FileLogger(fileLogConf);
         fileLogger.debug("Writing to the file");

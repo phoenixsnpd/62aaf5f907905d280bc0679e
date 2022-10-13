@@ -9,12 +9,6 @@ import java.util.Map;
 
 
 public class FileLoggerConfigurationLoader implements LoggerLoader<FileLoggerConfiguration, File> {
-    private final String FILE_PATH = "FILE";
-    private final String LOGGING_LEVEL = "LEVEL";
-    private final String MAX_SIZE = "MAX-SIZE";
-    private final String FORMAT = "FORMAT";
-    private LoggingLevel loglvl;
-
     @Override
     public FileLoggerConfiguration load(File file) {
         Map<String, String> LogConfiguration = new HashMap<>();
@@ -30,13 +24,9 @@ public class FileLoggerConfigurationLoader implements LoggerLoader<FileLoggerCon
             e.printStackTrace();
         }
 
-        if (LogConfiguration.get(LOGGING_LEVEL).equals("INFO")) {
-            loglvl = LoggingLevel.INFO;
-        } else if (LogConfiguration.get(LOGGING_LEVEL).equals("DEBUG")) {
-            loglvl = LoggingLevel.DEBUG;
-        }
-
-        return new FileLoggerConfiguration(new File(LogConfiguration.get(FILE_PATH)),
-                loglvl, Long.parseLong(LogConfiguration.get(MAX_SIZE)), LogConfiguration.get(FORMAT));
+        return new FileLoggerConfiguration(new File(LogConfiguration.get(Configuration.PATH.getTitle())),
+                LoggingLevel.valueOf(LogConfiguration.get(Configuration.LEVEL.getTitle())),
+                Long.parseLong(LogConfiguration.get(Configuration.SIZE.getTitle())),
+                LogConfiguration.get(Configuration.FORMAT.getTitle()));
     }
 }
