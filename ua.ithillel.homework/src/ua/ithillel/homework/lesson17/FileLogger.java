@@ -16,7 +16,7 @@ public class FileLogger {
         this.fileLogConfig = fileLoggerConfiguration;
     }
 
-    public void debug(String message) throws FileMaxSizeReachedException {
+        public void debug (String message) {
         if (fileLogConfig.getLoggingLevel().equals(LoggingLevel.INFO)) {
             return;
         }
@@ -44,7 +44,8 @@ public class FileLogger {
         }
     }
 
-    public void info(String message) throws FileMaxSizeReachedException {
+
+    public void info(String message) {
         try (BufferedWriter br = new BufferedWriter(new FileWriter(fileLogConfig.getFile(), true))) {
             createTime = LocalDateTime.now();
             String dateFormat = createTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm:ss"));
