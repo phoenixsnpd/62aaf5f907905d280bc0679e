@@ -10,7 +10,7 @@ public class FileLoggerConfigurationLoader {
     private final String LOGGING_LEVEL = "LEVEL";
     private final String MAX_SIZE = "MAX-SIZE";
     private final String FORMAT = "FORMAT";
-    private LoggingLevel loglvl;
+
 
     public FileLoggerConfiguration load(File file) {
         Map<String, String> LogConfiguration = new HashMap<>();
@@ -26,13 +26,8 @@ public class FileLoggerConfigurationLoader {
             e.printStackTrace();
         }
 
-        if (LogConfiguration.get(LOGGING_LEVEL).equals("INFO")) {
-            loglvl = LoggingLevel.INFO;
-        } else if (LogConfiguration.get(LOGGING_LEVEL).equals("DEBUG")) {
-            loglvl = LoggingLevel.DEBUG;
-        }
-
         return new FileLoggerConfiguration(new File(LogConfiguration.get(FILE_PATH)),
-                loglvl, Long.parseLong(LogConfiguration.get(MAX_SIZE)), LogConfiguration.get(FORMAT));
+                LoggingLevel.valueOf(LogConfiguration.get(LOGGING_LEVEL)),
+                Long.parseLong(LogConfiguration.get(MAX_SIZE)), LogConfiguration.get(FORMAT));
     }
 }

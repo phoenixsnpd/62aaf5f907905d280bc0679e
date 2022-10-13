@@ -16,21 +16,9 @@ public class FileLogger {
         this.fileLogConfig = fileLoggerConfiguration;
     }
 
-    public void debug(String message) {
-        if (fileLogConfig.getFile().length() > fileLogConfig.getFileMaxSize()) {
-            try {
-                throw new FileMaxSizeReachedException("Permissible size exceeded. Max size is " +
-                        fileLogConfig.getFileMaxSize() + " byte. Current size is " +
-                        fileLogConfig.getFile().length() + " byte. Path to file: " +
-                        fileLogConfig.getFile().getAbsolutePath());
-            } catch (FileMaxSizeReachedException e) {
-                e.printStackTrace();
-            } finally {
-                createTime = LocalDateTime.now();
-                String date = createTime.format(DateTimeFormatter.ofPattern("hh-mm-ss_dd.MM.yyyy"));
-                File file = new File("log_" + date);
-                fileLogConfig.setFile(file);
-            }
+    public void debug(String message) throws FileMaxSizeReachedException {
+        if (fileLogConfig.getLoggingLevel().equals(LoggingLevel.INFO)) {
+            return;
         }
         try (BufferedWriter br = new BufferedWriter(new FileWriter(fileLogConfig.getFile(), true))) {
             createTime = LocalDateTime.now();
@@ -41,36 +29,44 @@ public class FileLogger {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        if (fileLogConfig.getFile().length() > fileLogConfig.getFileMaxSize()) {
+            createTime = LocalDateTime.now();
+            String date = createTime.format(DateTimeFormatter.ofPattern("hh-mm-ss_dd.MM.yyyy"));
+            File file = new File("log_" + date);
+            fileLogConfig.setFile(file);
+        }
+        if (fileLogConfig.getFile().length() > fileLogConfig.getFileMaxSize()) {
+            throw new FileMaxSizeReachedException("Permissible size exceeded. Max size is " +
+                    fileLogConfig.getFileMaxSize() + " byte. Current size is " +
+                    fileLogConfig.getFile().length() + " byte. Path to file: " +
+                    fileLogConfig.getFile().getAbsolutePath());
+        }
     }
 
-    public void info(String message) {
-        if (fileLogConfig.getLoggingLevel().equals(LoggingLevel.DEBUG)) {
-            return;
-        } else {
-            if (fileLogConfig.getFile().length() > fileLogConfig.getFileMaxSize()) {
-                try {
-                    throw new FileMaxSizeReachedException("Permissible size exceeded. Max size is " +
-                            fileLogConfig.getFileMaxSize() + " byte. Current size is " +
-                            fileLogConfig.getFile().length() + " byte. Path to file: " +
-                            fileLogConfig.getFile().getAbsolutePath());
-                } catch (FileMaxSizeReachedException e) {
-                    e.printStackTrace();
-                } finally {
-                    createTime = LocalDateTime.now();
-                    String date = createTime.format(DateTimeFormatter.ofPattern("hh-mm-ss_dd.MM.yyyy"));
-                    File file = new File("log_" + date);
-                    fileLogConfig.setFile(file);
-                }
-            }
-            try (BufferedWriter br = new BufferedWriter(new FileWriter(fileLogConfig.getFile(), true))) {
-                createTime = LocalDateTime.now();
-                String dateFormat = createTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm:ss"));
-                String writing = "[" + dateFormat + "]" +
-                        "[" + fileLogConfig.getLoggingLevel() + "]" + " Message: " + message + "\n";
-                br.write(writing);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public void info(String message) throws FileMaxSizeReachedException {
+        try (BufferedWriter br = new BufferedWriter(new FileWriter(fileLogConfig.getFile(), true))) {
+            createTime = LocalDateTime.now();
+            String dateFormat = createTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm:ss"));
+            String writing = "[" + dateFormat + "]" +
+                    "[" + fileLogConfig.getLoggingLevel() + "]" + " Message: " + message + "\n";
+            br.write(writing);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (fileLogConfig.getFile().length() > fileLogConfig.getFileMaxSize()) {
+            createTime = LocalDateTime.now();
+            String date = createTime.format(DateTimeFormatter.ofPattern("hh-mm-ss_dd.MM.yyyy"));
+            File file = new File("log_" + date);
+            fileLogConfig.setFile(file);
+        }
+        if (fileLogConfig.getFile().length() > fileLogConfig.getFileMaxSize()) {
+            throw new FileMaxSizeReachedException("Permissible size exceeded. Max size is " +
+                    fileLogConfig.getFileMaxSize() + " byte. Current size is " +
+                    fileLogConfig.getFile().length() + " byte. Path to file: " +
+                    fileLogConfig.getFile().getAbsolutePath());
         }
     }
 }
+

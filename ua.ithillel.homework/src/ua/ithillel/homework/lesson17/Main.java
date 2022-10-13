@@ -10,8 +10,12 @@ public class Main {
                 LoggingLevel.DEBUG, 1000);
 
         FileLogger fileLogger = new FileLogger(fileLogConf);
-        fileLogger.debug("Writing to the file");
-        fileLogger.info("New writing to the file");
+        try {
+            fileLogger.debug("Writing to the file");
+            fileLogger.info("New writing to the file");
+        } catch (FileMaxSizeReachedException e) {
+            e.printStackTrace();
+        }
 
         FileLoggerConfigurationLoader fileLogConfLoader = new FileLoggerConfigurationLoader();
         System.out.println(fileLogConfLoader.load(fileWithConfig));
