@@ -3,9 +3,9 @@ package ua.ithillel.lesson17;
 import java.util.Arrays;
 
 public class ValueCalculator {
-    int numbersSize = 5_000_000;
-    float[] numbers = new float[numbersSize];
-    int halfNumbersSize = numbers.length / 2;
+    private int numbersSize = 5_000_000;
+    private float[] numbers = new float[numbersSize];
+    private int halfNumbersSize = numbers.length / 2;
 
     public void doCalc() {
         long startTime = System.currentTimeMillis();
