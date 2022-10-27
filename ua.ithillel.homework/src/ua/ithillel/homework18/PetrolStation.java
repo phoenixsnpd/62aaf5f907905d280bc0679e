@@ -1,32 +1,35 @@
 package ua.ithillel.homework18;
 
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
 public class PetrolStation {
-    private AtomicReference<Double> amount = new AtomicReference<>(0.0);
+    private double amount;
+    private ReadWriteLock lock = new ReentrantReadWriteLock();
     private Semaphore semaphore = new Semaphore(3);
 
-    public PetrolStation(Double amount) {
-        this.amount.set(amount);
+    public PetrolStation(double amount) {
+        this.amount = amount;
     }
 
-    public synchronized void doRefuel(Integer fuel) {
+    public void doRefuel(Integer fuel) {
         try {
             semaphore.acquire();
-        if (amount.get() < fuel) {
+            lock.writeLock().lock();
+            if (amount < fuel) {
             System.out.println("Not enough fuel");
             return;
         }
         int seconds = (int) (Math.random() * 8) + 3;
             TimeUnit.SECONDS.sleep(seconds);
-            amount.set(amount.get() - fuel);        //amount = amount - fuel;
+            amount = amount - fuel;
             System.out.println(amount);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            lock.writeLock().unlock();
             semaphore.release();
         }
     }
