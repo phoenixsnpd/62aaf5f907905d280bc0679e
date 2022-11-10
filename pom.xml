@@ -29,6 +29,8 @@
         <maven.compiler.target>17</maven.compiler.target>
         <version.org.junit.jupiter>5.9.1</version.org.junit.jupiter>
         <version.org.projectlombok>1.18.24</version.org.projectlombok>
+        <version.org.junit.platform>1.9.1</version.org.junit.platform>
+        <version.org.apache.maven.plugins>3.0.0-M7</version.org.apache.maven.plugins>
         <name>denys</name>
         <surename>polukhin</surename>
     </properties>
@@ -52,6 +54,12 @@
             <version>${version.org.junit.jupiter}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-console-standalone</artifactId>
+            <version>${version.org.junit.platform}</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -60,7 +68,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M7</version>
+                <version>${version.org.apache.maven.plugins}</version>
             </plugin>
         </plugins>
     </build>
