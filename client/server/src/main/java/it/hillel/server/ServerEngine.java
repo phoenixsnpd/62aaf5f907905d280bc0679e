@@ -34,17 +34,16 @@ public class ServerEngine {
 
         Client newConnections = new Client(name, connectionTime.getTime(), client);
         activeConnections.add(newConnections);
+        DataInputStream in = new DataInputStream(client.getInputStream());
+        DataOutputStream out = new DataOutputStream(client.getOutputStream());
+        for (Client connection : activeConnections) {
+            DataOutputStream messageAboutConect =
+                    new DataOutputStream(connection.getSocket().getOutputStream());
+            messageAboutConect.writeUTF("[SERVER] " + newConnections.getName() + " was connected");
+        }
         return () -> {
             try {
-                DataInputStream in = new DataInputStream(client.getInputStream());
-                DataOutputStream out = new DataOutputStream(client.getOutputStream());
-                for (Client connection : activeConnections) {
-                    DataOutputStream messageAboutConect =
-                            new DataOutputStream(connection.getSocket().getOutputStream());
-                    messageAboutConect.writeUTF("[SERVER] " + newConnections.getName() + " was connected");
-                }
                 String inBoundMessage;
-
                 while (true) {
                     inBoundMessage = in.readUTF();
                     System.out.println(inBoundMessage);
@@ -62,7 +61,7 @@ public class ServerEngine {
                         break;
                     }
                     if (inBoundMessage.toLowerCase().contains("-file")) {
-                        getFile(in);
+                        getFile(client);
                     }
                 }
             } catch (IOException e) {
@@ -71,25 +70,20 @@ public class ServerEngine {
         };
     }
 
-    private void getFile(DataInputStream in) {
+    private void getFile(Socket socket) {
         File file = new File("copy_file.txt");
-        byte[] data = new byte[64];
+        byte[] data = new byte[1024];
 
         try {
-            InputStream input = in;
+            DataInputStream in = new DataInputStream(socket.getInputStream());
             FileOutputStream fos = new FileOutputStream(file);
-
             int num;
-            while (file.length() < 64) {
-                in.read(data);
+            while (in.read(data) != 1) {
                 fos.write(data);
                 fos.flush();
-                System.out.println((int) file.length());
             }
-            System.out.println("Hello from server"); /////////////////////////////////
             fos.close();
-            //input.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

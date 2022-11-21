@@ -64,7 +64,6 @@ public class ClientEngine {
                 out.write(data);
                 out.flush();
             }
-            System.out.println(num);
             input.close();
         } catch (IOException e) {
             e.printStackTrace();

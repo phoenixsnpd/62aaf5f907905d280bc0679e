@@ -1,12 +1,8 @@
 package it.hillel.server;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.net.Socket;
-import java.util.Date;
 
 @AllArgsConstructor
 @Getter
