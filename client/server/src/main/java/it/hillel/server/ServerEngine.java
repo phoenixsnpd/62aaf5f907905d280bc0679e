@@ -39,7 +39,7 @@ public class ServerEngine {
         for (Client connection : activeConnections) {
             DataOutputStream messageAboutConect =
                     new DataOutputStream(connection.getSocket().getOutputStream());
-            messageAboutConect.writeUTF("[SERVER] " + newConnections.getName() + " was connected");
+            messageAboutConect.writeUTF("[SERVER] " + newConnections.getName() + " was connected!");
         }
         return () -> {
             try {
