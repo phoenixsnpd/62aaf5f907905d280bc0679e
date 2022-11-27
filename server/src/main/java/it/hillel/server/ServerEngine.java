@@ -7,19 +7,22 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
 public class ServerEngine {
     private static final int SERVER_PORT = 8888;
-
     private final ServerSocket serverSocket;
     private CopyOnWriteArrayList<Client> activeConnections = new CopyOnWriteArrayList<>();
     private int clientsCount;
 
-
     @SneakyThrows
     public ServerEngine() {
         serverSocket = new ServerSocket(SERVER_PORT);
+    }
+
+    public void start() {
         while (true) {
             new Thread(multiThreadClient()).start();
         }
@@ -72,13 +75,15 @@ public class ServerEngine {
 
     private void getFile(Socket socket) {
         File file = new File("copy_file.txt");
-        byte[] data = new byte[1024];
 
         try {
+            System.out.println();
             DataInputStream in = new DataInputStream(socket.getInputStream());
             FileOutputStream fos = new FileOutputStream(file);
-            int num;
-            while (in.read(data) != 1) {
+            int fileSize = in.readInt();
+            byte[] data = new byte[fileSize];
+            while (file.length() < 11) {
+                in.read(data);
                 fos.write(data);
                 fos.flush();
             }
@@ -86,5 +91,17 @@ public class ServerEngine {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public ServerSocket getServerSocket() {
+        return serverSocket;
+    }
+
+    public CopyOnWriteArrayList<Client> getActiveConnections() {
+        return activeConnections;
+    }
+
+    public int getClientsCount() {
+        return clientsCount;
     }
 }

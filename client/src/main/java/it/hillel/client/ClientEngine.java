@@ -19,8 +19,10 @@ public class ClientEngine {
         socket = new Socket(SERVER_HOST, SERVER_PORT);
         in = new DataInputStream(socket.getInputStream());
         out = new DataOutputStream(socket.getOutputStream());
+    }
 
-
+    @SneakyThrows
+    public void start() {
         new Thread(getListener()).start();
         Scanner scan = new Scanner(System.in);
         String outBondMessage;
@@ -53,14 +55,14 @@ public class ClientEngine {
         };
     }
 
-
     private void sendFile(String filePath) {
         File transferFile = new File(filePath);
-        byte[] data = new byte[1024];
+        int fileSize = (int) transferFile.length();
+        byte[] data = new byte[(int) transferFile.length()];
         try {
             InputStream input = new FileInputStream(transferFile);
-            int num;
-            while ((num = input.read(data)) != -1) {
+            out.writeInt(fileSize);
+            while (input.read(data) != -1) {
                 out.write(data);
                 out.flush();
             }
@@ -68,6 +70,10 @@ public class ClientEngine {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Socket getSocket() {
+        return socket;
     }
 }
 

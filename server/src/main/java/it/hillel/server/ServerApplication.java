@@ -2,6 +2,6 @@ package it.hillel.server;
 
 public class ServerApplication {
     public static void main(String[] args) {
-        ServerEngine serverEngine = new ServerEngine();
+        new ServerEngine().start();
     }
 }
