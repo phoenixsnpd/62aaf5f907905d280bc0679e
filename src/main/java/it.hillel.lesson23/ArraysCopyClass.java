@@ -1,6 +1,7 @@
 package it.hillel.lesson23;
 
-public class ArraysCopyClass {
+public final class ArraysCopyClass {
+    private  ArraysCopyClass() {}
     public static int[] arrayCopy(int[] source, int[] target) {
         int[] copyTarget;
         if (target == null) {

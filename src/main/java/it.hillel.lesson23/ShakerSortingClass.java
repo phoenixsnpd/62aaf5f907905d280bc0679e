@@ -1,11 +1,13 @@
 package it.hillel.lesson23;
 
-public class ShakerSortingClass {
+public final class ShakerSortingClass {
+    private ShakerSortingClass() {}
     public static int[] sort(int[] numbersForSorting) {
         int startIndex = 0;
         int finishIndex = numbersForSorting.length - 1;
+        int cycleCheck = 0;
 
-        while (true) {
+        while (cycleCheck >= 0) {
             int biggestNumber = Integer.MIN_VALUE;
             int lowestNumber = Integer.MAX_VALUE;
             int indexPoint = -1;
@@ -34,11 +36,8 @@ public class ShakerSortingClass {
                 numbersForSorting[indexPoint] = numbersForSorting[startIndex];
                 numbersForSorting[startIndex] = lowestNumber;
             }
-            startIndex++;
-
-            if (indexPoint < 0) {
-                return numbersForSorting;
-            }
+            cycleCheck  = indexPoint;
         }
+        return numbersForSorting;
     }
 }
