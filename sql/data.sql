@@ -6,7 +6,7 @@ INSERT INTO country(name, mainland_id) VALUES ('Ukraine', 1), ('England', 1),
                                               ('Pangea country 1', 4), ('Pangea country 2', 4);
 
 INSERT INTO city(name, population, county_id)
-VALUES ('Kyiv', 2.8, 1), ('Dnipro', 0.9, 1), ('Lviv', 0.7, 1),
+VALUES ('Kyiv', 2.8, 1), ('Dnipro', 0.9, 1), ('Lviv', 0.6, 1),
        ('London', 9, 2), ('Manchester', 0.5, 2), ('Cambridge', 0.1, 2),
        ('Cairo', 9.6, 3), ('Luxor', 1.3, 3), ('Alexandria', 5.2, 3),
        ('Zanzibar', 1.5, 4), ('Tanga', 0.2, 4), ('Dodoma', 2, 4),
