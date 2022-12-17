@@ -1,9 +1,10 @@
-INSERT INTO mainland(name) VALUES ('Europe'), ('Africa'), ('North America'), ('Pangea');
+INSERT INTO mainland(name)
+VALUES ('Europe'), ('Africa'), ('North America'), ('Pangea');
 
-INSERT INTO country(name, mainland_id) VALUES ('Ukraine', 1), ('England', 1),
-                                              ('Egypt', 2), ('Tanzania', 2),
-                                              ('United States', 3), ('Canada', 3),
-                                              ('Pangea country 1', 4), ('Pangea country 2', 4);
+INSERT INTO country(name, mainland_id)
+VALUES ('Ukraine', 1), ('England', 1), ('Egypt', 2),
+       ('Tanzania', 2), ('United States', 3), ('Canada', 3),
+       ('Pangea country 1', 4), ('Pangea country 2', 4);
 
 INSERT INTO city(name, population, county_id)
 VALUES ('Kyiv', 2.8, 1), ('Dnipro', 0.9, 1), ('Lviv', 0.6, 1),
