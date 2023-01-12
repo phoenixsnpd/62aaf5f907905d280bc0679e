@@ -14,6 +14,7 @@
         <name>Hillel IT School</name>
         <url>https://ithillel.ua/</url>
     </organization>
+    <packaging>war</packaging>
 
     <developers>
         <developer>
@@ -27,19 +28,45 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <version.org.junit.jupiter>5.9.1</version.org.junit.jupiter>
-        <version.org.projectlombok>1.18.24</version.org.projectlombok>
+        <version.org.apache.maven.plugins.war>3.3.2</version.org.apache.maven.plugins.war>
         <version.org.apache.maven.plugins>3.0.0-M7</version.org.apache.maven.plugins>
+        <version.org.junit.jupiter>5.9.2</version.org.junit.jupiter>
+        <version.org.projectlombok>1.18.24</version.org.projectlombok>
         <version.org.postgresql>42.5.1</version.org.postgresql>
         <version.org.springframework>6.0.3</version.org.springframework>
+        <version.jakarta.servlet>6.0.0</version.jakarta.servlet>
         <name>denys</name>
         <surename>polukhin</surename>
     </properties>
 
     <dependencies>
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <artifactId>spring-web</artifactId>
+            <version>6.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>${version.jakarta.servlet}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
             <version>${version.org.springframework}</version>
         </dependency>
         <dependency>
@@ -80,6 +107,14 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.org.apache.maven.plugins}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${version.org.apache.maven.plugins.war}</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
             </plugin>
         </plugins>
     </build>
