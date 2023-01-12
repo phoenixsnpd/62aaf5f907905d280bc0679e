@@ -35,27 +35,16 @@
         <version.org.postgresql>42.5.1</version.org.postgresql>
         <version.org.springframework>6.0.3</version.org.springframework>
         <version.jakarta.servlet>6.0.0</version.jakarta.servlet>
+        <version.jakarta.servlet.jsp.jstl>3.0.0</version.jakarta.servlet.jsp.jstl>
         <name>denys</name>
         <surename>polukhin</surename>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>6.0.3</version>
-        </dependency>
-
-        <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-            <version>3.0.0</version>
+            <version>${version.jakarta.servlet.jsp.jstl}</version>
         </dependency>
 
         <dependency>
