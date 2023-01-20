@@ -32,19 +32,30 @@
         <version.org.apache.maven.plugins>3.0.0-M7</version.org.apache.maven.plugins>
         <version.org.postgresql>42.5.1</version.org.postgresql>
         <version.org.springframework>6.0.3</version.org.springframework>
+        <version.org.hibernate.orm>6.1.6.Final</version.org.hibernate.orm>
+
         <name>denys</name>
         <surename>polukhin</surename>
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${version.org.springframework}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${version.org.hibernate.orm}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${version.org.springframework}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
             <version>${version.org.springframework}</version>
         </dependency>
 
@@ -53,18 +64,21 @@
             <artifactId>postgresql</artifactId>
             <version>${version.org.postgresql}</version>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${version.org.projectlombok}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${version.org.junit.jupiter}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
