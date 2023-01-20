@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ua.ithillel</groupId>
+    <artifactId>62aaf5f907905d280bc0679e</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Hillel IT School Project</name>
+    <description>Hillel IT School Project of the group 62aaf5f907905d280bc0679e</description>
+
+    <organization>
+        <name>Hillel IT School</name>
+        <url>https://ithillel.ua/</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Denys Polukhin</name>
+            <id>phoenix.snpd</id>
+            <url>https://github.com/phoenixsnpd/62aaf5f907905d280bc0679e</url>
+            <email>phoenix.snpd@gmail.com</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <version.org.junit.jupiter>5.9.1</version.org.junit.jupiter>
+        <version.org.projectlombok>1.18.24</version.org.projectlombok>
+        <version.org.apache.maven.plugins>3.0.0-M7</version.org.apache.maven.plugins>
+        <version.org.postgresql>42.5.1</version.org.postgresql>
+        <version.org.springframework>6.0.3</version.org.springframework>
+        <version.org.hibernate.orm>6.1.6.Final</version.org.hibernate.orm>
+
+        <name>denys</name>
+        <surename>polukhin</surename>
+    </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${version.org.springframework}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${version.org.hibernate.orm}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${version.org.springframework}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${version.org.postgresql}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${version.org.projectlombok}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${version.org.junit.jupiter}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${version.org.junit.jupiter}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-${name}-${surename}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${version.org.apache.maven.plugins}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
