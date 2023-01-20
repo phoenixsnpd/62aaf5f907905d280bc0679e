@@ -11,7 +11,7 @@ public class HibernateApplication {
         Student student1 = new Student("Denys", "phoenix.snpd@gmail.com");
         Student student2 = new Student("Jack", "Jack@gmail.com");
         Student student3 = new Student("Rykard", "Rykard@gmail.com");
-        Student student4 = new Student("Updated person", "update@gmail.com");
+        Student student4 = new Student("New person", "update@gmail.com");
 
         studentDao.save(student1);
         studentDao.save(student2);
