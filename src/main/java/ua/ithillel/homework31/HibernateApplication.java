@@ -8,7 +8,6 @@ public class HibernateApplication {
     public static void main(String[] args) {
         var context = new AnnotationConfigApplicationContext("ua.ithillel.homework31");
         StudentDao studentDao = context.getBean(StudentDao.class);
-        //SessionFactory sessionFactory = context.getBean(SessionFactory.class);
         Student student = new Student();
         student.setId(1);
         student.setName("Denys");
