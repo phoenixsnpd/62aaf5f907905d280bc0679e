@@ -43,8 +43,8 @@ public class OrderRepository implements EntityRepository<Order> {
 
     @Override
     public void delete(long id) {
-        Product product = emf.find(Product.class, id);
-        emf.remove(product);
+        Order order = emf.find(Order.class, id);
+        emf.remove(order);
         emf.flush();
         emf.clear();
         emf.close();
