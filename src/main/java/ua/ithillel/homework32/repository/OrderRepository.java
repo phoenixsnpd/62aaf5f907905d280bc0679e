@@ -4,12 +4,14 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 import ua.ithillel.homework32.entity.Order;
 import ua.ithillel.homework32.entity.Product;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class OrderRepository implements EntityRepository<Order> {
 
     @PersistenceContext
