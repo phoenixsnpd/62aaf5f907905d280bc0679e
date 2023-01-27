@@ -22,12 +22,12 @@ public class OrderController {
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Order findByID(@PathVariable long id) {
-        return orderRepository.findByID(id).orElse(null);
+        return orderRepository.findById(id).orElse(null);
     }
 
     @RequestMapping(path = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Order> findAll() {
-        return orderRepository.gettAll();
+        return orderRepository.findAll();
     }
 }

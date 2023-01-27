@@ -18,11 +18,11 @@ public class Order {
     @Column(name = "id")
     long id;
 
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     Date date;
 
-    @Column(name = "cost")
-    int cost;
+    @Column(name = "cost", nullable = false)
+    double cost;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     List<Product> products;

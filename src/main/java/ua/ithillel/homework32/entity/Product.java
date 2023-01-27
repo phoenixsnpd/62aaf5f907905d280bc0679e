@@ -18,7 +18,7 @@ public class Product {
     @Column(name = "name", unique = true, length = 50)
     String name;
 
-    @Column(name = "cost")
+    @Column(name = "cost", nullable = false)
     int cost;
 
     public Product() {
