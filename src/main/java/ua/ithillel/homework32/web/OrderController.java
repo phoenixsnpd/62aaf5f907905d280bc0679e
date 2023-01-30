@@ -1,16 +1,12 @@
 package ua.ithillel.homework32.web;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ua.ithillel.homework32.entity.Order;
 import ua.ithillel.homework32.repository.OrderRepository;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/orders")
 public class OrderController {
     private final OrderRepository orderRepository;
@@ -20,14 +16,12 @@ public class OrderController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
     public Order findByID(@PathVariable long id) {
-        return orderRepository.findById(id).orElse(null);
+        return orderRepository.getOrderByID(id).orElse(null);
     }
 
     @RequestMapping(path = "/all", method = RequestMethod.GET)
-    @ResponseBody
     public List<Order> findAll() {
-        return orderRepository.findAll();
+        return orderRepository.getAllOrders();
     }
 }
