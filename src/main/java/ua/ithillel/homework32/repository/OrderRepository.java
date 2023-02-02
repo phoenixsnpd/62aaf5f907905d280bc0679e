@@ -1,6 +1,5 @@
 package ua.ithillel.homework32.repository;
 
-import lombok.Data;
 import org.springframework.stereotype.Component;
 import ua.ithillel.homework32.entity.Order;
 
