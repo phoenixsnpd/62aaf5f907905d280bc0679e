@@ -24,30 +24,31 @@
         </developer>
     </developers>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.0.1</version>
+    </parent>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <version.org.junit.jupiter>5.9.1</version.org.junit.jupiter>
-        <version.org.projectlombok>1.18.24</version.org.projectlombok>
         <version.org.apache.maven.plugins>3.0.0-M7</version.org.apache.maven.plugins>
         <version.org.postgresql>42.5.1</version.org.postgresql>
-        <version.org.springframework>6.0.3</version.org.springframework>
+        <version.org.projectlombok>1.18.24</version.org.projectlombok>
         <name>denys</name>
         <surename>polukhin</surename>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${version.org.springframework}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web-services</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${version.org.springframework}</version>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -59,18 +60,7 @@
             <version>${version.org.projectlombok}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${version.org.junit.jupiter}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>${version.org.junit.jupiter}</version>
-            <scope>test</scope>
-        </dependency>
+
     </dependencies>
 
     <build>
@@ -81,7 +71,25 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.org.apache.maven.plugins}</version>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <packageName>ua.ithillel.homework32.ws.gen.contract</packageName>
+                    <sources>
+                        <source>${project.basedir}/src/main/resources/xsd</source>
+                    </sources>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
 </project>
