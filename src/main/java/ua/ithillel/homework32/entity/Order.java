@@ -15,9 +15,4 @@ public class Order {
     double cost;
     List<Product> products;
 
-    public Order(long id, Date date, double cost) {
-        this.id = id;
-        this.date = date;
-        this.cost = cost;
-    }
 }

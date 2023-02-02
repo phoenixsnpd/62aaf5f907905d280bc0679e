@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 import ua.ithillel.homework32.entity.Order;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,9 +12,9 @@ public class OrderRepository {
     private List<Order> orders = new ArrayList<>();
 
     public OrderRepository() {
-        Order order1 = new Order(1, new Date(), 100);
-        Order order2 = new Order(2, new Date(), 200);
-        Order order3 = new Order(3, new Date(), 300);
+        Order order1 = new Order();
+        Order order2 = new Order();
+        Order order3 = new Order();
         orders.add(order1);
         orders.add(order2);
         orders.add(order3);
