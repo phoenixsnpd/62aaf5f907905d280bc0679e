@@ -5,25 +5,21 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Date;
-import java.util.List;
-
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "orders")
-public class Order {
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     long id;
+    @Column(name = "name", unique = true, nullable = false, length = 50)
+    String name;
 
-    @Column(name = "date", nullable = false)
-    Date date;
+    @Column(name = "password", nullable = false, length = 50)
+    String password;
 
-    @Column(name = "cost", nullable = false)
-    double cost;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Product> products;
+    @Column(name = "role", nullable = false, length = 15)
+    String role;
 }
